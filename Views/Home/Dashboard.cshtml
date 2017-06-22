@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Dashboard Page";
+}
+
+<h1>Success</h1>
+<h3>Welcome @ViewBag.CurrentUser.first_name @ViewBag.CurrentUser.last_name !</h3>
+<h4>Balance: @ViewBag.CurrentUser.balance Kroner</h4>
+<h4>@ViewBag.NoMoneyError</h4>
+
+<form action="process" method="post">
+    <label for="action">Deposit or Withdrawl</label>
+        <input type="number" name = "number">
+        <input type="submit" value="Submit" class="btn btn-info">
+</form>
+
+
+<table class = "table table-striped table-boardered">
+    <thread>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thread>
+    <tbody>
+
+            @{
+                foreach(var activity in ViewBag.AllMyTransactions)
+                {
+                    <tr>
+                        <td>@activity.amount</td>
+                        <td>@activity.CreatedAt</td>
+
+                    </tr>
+                    
+                }
+            }
+
+    </tbody>
+    
+</table>
